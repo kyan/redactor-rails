@@ -1,6 +1,8 @@
+if (!RedactorPlugins) var RedactorPlugins = {};
+
 (function($)
 {
-	$.Redactor.prototype.filemanager = function()
+	RedactorPlugins.filemanager = function()
 	{
 		return {
 			init: function()
@@ -21,7 +23,6 @@
 
 				var $box = $('<div id="redactor-file-manager-box" style="overflow: auto; height: 300px;" class="redactor-tab redactor-tab2">').hide();
 				$modal.append($box);
-
 
 				$.ajax({
 				  dataType: "json",
