@@ -34,6 +34,9 @@
 	// Plugin
 	$.fn.redactor = function(options)
 	{
+
+		window.debugRedactor.push(this);
+		
 		var val = [];
 		var args = Array.prototype.slice.call(arguments, 1);
 
