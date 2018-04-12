@@ -6167,6 +6167,12 @@
 					if (this.range.collapsed === false)
 					{
 						this.selection.setNodesMarker(this.range, endNode, false);
+
+						// Patched for Chrome 58, deleting text from selection + backspace
+						if (this.utils.browser('chrome'))
+						{
+							this.caret.set(startNode, 0, endNode, 0);
+						}
 					}
 					else
 					{
@@ -6287,6 +6293,8 @@
 					{
 						var node2 = this.selection.getMarker(2);
 						this.selection.setMarker(this.range, node2, false);
+
+						// Patched for Chrome 58, deleting text from selection + backspace
 						if (this.utils.browser('chrome'))
 						{
 								this.caret.set(node1, 0, node2, 0);
