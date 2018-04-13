@@ -1,10 +1,10 @@
 class RedactorRails::PicturesController < ApplicationController
-  before_filter :redactor_authenticate_user!
+  before_action :redactor_authenticate_user!
 
   def index
     @pictures = RedactorRails.picture_model.where(
         RedactorRails.picture_model.new.respond_to?(RedactorRails.devise_user) ? { RedactorRails.devise_user_key => redactor_current_user.id } : { })
-    render :json => @pictures.to_json
+    render json: @pictures.to_json
   end
 
   def create
@@ -18,7 +18,7 @@ class RedactorRails::PicturesController < ApplicationController
     end
 
     if @picture.save
-      render :text => { :filelink => @picture.url }.to_json
+      render text: { filelink: @picture.url }.to_json
     else
       render json: { error: @picture.errors }
     end
